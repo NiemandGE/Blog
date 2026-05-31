@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Даниил | Официальный сайт</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0a0a0a;
+      --bg-secondary: #141414;
+      --text-primary: #ffffff;
+      --text-secondary: #b0b0b0;
+      --accent: #e3000f; /* Фирменный красный, близкий к Sea Shepherd */
+      --border: #2a2a2a;
+      --font-heading: 'Bebas Neue', Impact, sans-serif;
+      --font-body: 'Inter', system-ui, sans-serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Навигация */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(10,10,10,0.95);
+      border-bottom: 2px solid var(--accent);
+      padding: 1rem 2rem;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .logo { font-family: var(--font-heading); font-size: 1.8rem; letter-spacing: 2px; color: var(--accent); text-transform: uppercase; }
+    .nav-links { display: flex; gap: 1.5rem; }
+    .nav-btn {
+      background: none; border: none; color: var(--text-secondary);
+      font-family: var(--font-heading); font-size: 1.1rem; letter-spacing: 1px;
+      cursor: pointer; text-transform: uppercase; transition: color 0.2s;
+    }
+    .nav-btn:hover, .nav-btn.active { color: var(--text-primary); border-bottom: 2px solid var(--accent); }
+
+    /* Основной контент */
+    main { padding: 6rem 2rem 4rem; max-width: 1000px; margin: 0 auto; }
+    section { display: none; animation: fadeIn 0.3s ease; }
+    section.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+    h1, h2 { font-family: var(--font-heading); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1.5rem; }
+    h1 { font-size: 2.5rem; border-left: 4px solid var(--accent); padding-left: 1rem; }
+    h2 { font-size: 2rem; color: var(--accent); }
+
+    /* Страница 1: Главная */
+    .profile { text-align: center; margin-bottom: 3rem; }
+    .avatar {
+      width: 160px; height: 160px; border-radius: 50%; object-fit: cover;
+      border: 3px solid var(--accent); margin-bottom: 1rem;
+    }
+    .bio { max-width: 600px; margin: 0 auto 2rem; color: var(--text-secondary); }
+    .socials { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
+    .social-link {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.6rem 1.2rem; background: var(--bg-secondary);
+      border: 1px solid var(--border); color: var(--text-primary);
+      text-decoration: none; font-weight: 600; transition: all 0.2s;
+    }
+    .social-link:hover { background: var(--accent); border-color: var(--accent); }
+
+    /* Страница 2: Лента */
+    .feed-container { display: grid; gap: 1.5rem; }
+    .post { background: var(--bg-secondary); padding: 1.5rem; border-left: 3px solid var(--border); transition: border-color 0.2s; }
+    .post:hover { border-left-color: var(--accent); }
+    .post-date { color: var(--accent); font-size: 0.85rem; margin-bottom: 0.5rem; font-weight: 600; }
+    .post-text { color: var(--text-secondary); }
+    .feed-status { text-align: center; color: var(--text-secondary); padding: 2rem; }
+
+    /* Страница 3: Проекты */
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+    .project-card { background: var(--bg-secondary); border: 1px solid var(--border); overflow: hidden; }
+    .project-cover { width: 100%; height: 180px; background: #1a1a1a; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); }
+    .project-content { padding: 1.2rem; }
+    .project-title { font-size: 1.3rem; margin-bottom: 0.5rem; color: var(--text-primary); }
+    .project-desc { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1rem; }
+    .download-btn {
+      display: inline-block; padding: 0.6rem 1rem; background: var(--accent);
+      color: #fff; text-decoration: none; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 1px; transition: opacity 0.2s;
+    }
+    .download-btn:hover { opacity: 0.85; }
+
+    /* Страница 4: Донат */
+    .donate-wrapper { text-align: center; max-width: 500px; margin: 0 auto; }
+    .qr-container {
+      width: 280px; height: 280px; background: #fff; padding: 1rem;
+      margin: 1.5rem auto; border: 2px solid var(--accent);
+    }
+    .qr-container img { width: 100%; height: 100%; object-fit: contain; }
+    .donate-note { color: var(--text-secondary); font-size: 0.9rem; margin-top: 1rem; }
+
+    footer { text-align: center; padding: 2rem; color: var(--text-secondary); border-top: 1px solid var(--border); margin-top: 4rem; font-size: 0.85rem; }
+
+    @media (max-width: 600px) {
+      nav { flex-direction: column; gap: 0.8rem; padding: 1rem; }
+      .nav-links { gap: 1rem; flex-wrap: wrap; justify-content: center; }
+      main { padding: 8rem 1rem 3rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo">Даниил</div>
+    <div class="nav-links">
+      <button class="nav-btn active" data-target="home">Главная</button>
+      <button class="nav-btn" data-target="feed">Лента</button>
+      <button class="nav-btn" data-target="projects">Проекты</button>
+      <button class="nav-btn" data-target="donate">Донат</button>
+    </div>
+  </nav>
+
+  <main>
+    <!-- 1. Главная -->
+    <section id="home" class="active">
+      <div class="profile">
+        <img src="avatar.jpg" alt="Аватар Даниила" class="avatar">
+        <h1>Обо мне</h1>
+        <p class="bio">Здесь разместите краткое описание вашей деятельности, целей или философии. Стиль текста должен соответствовать строгой и прямой подаче, характерной для активистских и технических сообществ.</p>
+        <div class="socials">
+          <a href="https://instagram.com/ваш_ник" class="social-link" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://t.me/ваш_ник" class="social-link" target="_blank" rel="noopener">Telegram</a>
+          <a href="https://pinterest.com/ваш_ник" class="social-link" target="_blank" rel="noopener">Pinterest</a>
+          <a href="https://youtube.com/@ваш_ник" class="social-link" target="_blank" rel="noopener">YouTube</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Лента -->
+    <section id="feed">
+      <h2>Публикации</h2>
+      <div id="feed-container" class="feed-container">
+        <div class="feed-status">Загрузка публикаций...</div>
+      </div>
+    </section>
+
+    <!-- 3. Проекты -->
+    <section id="projects">
+      <h2>Проекты</h2>
+      <div class="projects-grid">
+        <article class="project-card">
+          <div class="project-cover">Обложка проекта 1</div>
+          <div class="project-content">
+            <h3 class="project-title">Название проекта</h3>
+            <p class="project-desc">Краткое описание функционала, технологий и целей проекта.</p>
+            <a href="ссылка_на_архив.zip" class="download-btn" download>Скачать</a>
+          </div>
+        </article>
+        <article class="project-card">
+          <div class="project-cover">Обложка проекта 2</div>
+          <div class="project-content">
+            <h3 class="project-title">Название проекта</h3>
+            <p class="project-desc">Описание второго проекта. Замените заглушки на реальные данные.</p>
+            <a href="ссылка_на_архив.zip" class="download-btn" download>Скачать</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 4. Донат -->
+    <section id="donate">
+      <h2>Поддержать проект</h2>
+      <div class="donate-wrapper">
+        <p>Сканируйте QR-код для отправки произвольной или фиксированной суммы. Платёж обрабатывается через защищённый шлюз.</p>
+        <div class="qr-container">
+          <img src="qr-placeholder.png" alt="QR-код для доната">
+        </div>
+        <p class="donate-note">Если QR не отображается, замените файл <code>qr-placeholder.png</code> в корне репозитория на сгенерированный код вашей платёжной ссылки.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    &copy; <span id="year"></span> Даниил. Все права защищены. Хостинг: GitHub Pages.
+  </footer>
+
+  <script>
+    // Навигация
+    document.querySelectorAll('.nav-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(btn.dataset.target).classList.add('active');
+      });
+    });
+
+    // Год в футере
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Загрузка ленты из Telegram (через RSS2JSON)
+    // ЗАМЕНИТЕ 'ваш_ник' на username публичного Telegram-канала
+    const TG_USERNAME = 'ваш_ник';
+    const RSS_URL = `https://api.rss2json.com/v1/api.json?rss_url=https://t.me/s/${TG_USERNAME}`;
+
+    async function loadFeed() {
+      const container = document.getElementById('feed-container');
+      try {
+        const res = await fetch(RSS_URL);
+        const data = await res.json();
+        if (data.status !== 'ok' || !data.items?.length) throw new Error('Нет данных');
+        
+        container.innerHTML = '';
+        data.items.slice(0, 10).forEach(post => {
+          const el = document.createElement('article');
+          el.className = 'post';
+          el.innerHTML = `
+            <div class="post-date">${new Date(post.pubDate).toLocaleDateString('ru-RU')}</div>
+            <div class="post-text">${post.description?.replace(/<[^>]*>/g, '').slice(0, 250)}...</div>
+          `;
+          container.appendChild(el);
+        });
+      } catch (e) {
+        container.innerHTML = `<div class="feed-status">Не удалось загрузить ленту. Убедитесь, что канал "${TG_USERNAME}" публичный, или используйте статический JSON.</div>`;
+        console.error('Feed error:', e);
+      }
+    }
+
+    // Раскомментируйте строку ниже для активации загрузки:
+    // loadFeed();
+  </script>
+</body>
+</html>
