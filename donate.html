@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Даниил | Поддержать</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav>
+    <a href="./" class="logo">Даниил</a>
+    <div class="nav-links">
+      <a href="./" class="nav-link nav-btn">Главная</a>
+      <a href="feed.html" class="nav-link nav-btn">Лента</a>
+      <a href="projects.html" class="nav-link nav-btn">Проекты</a>
+      <a href="donate.html" class="nav-link nav-btn">Донат</a>
+    </div>
+  </nav>
+
+  <main>
+    <h2>Поддержать проект</h2>
+    <div class="donate-wrapper">
+      <p>Сканируйте QR-код для отправки произвольной или фиксированной суммы. Платёж обрабатывается через защищённый шлюз вашего провайдера.</p>
+      <div class="qr-container">
+        <img src="qr-placeholder.png" alt="QR-код для доната">
+      </div>
+      <p class="donate-note">Если QR не отображается, замените файл <code>qr-placeholder.png</code> в корне репозитория на сгенерированный код вашей платёжной ссылки.</p>
+    </div>
+  </main>
+
+  <footer>&copy; <span id="year"></span> Даниил. Все права защищены. Хостинг: GitHub Pages.</footer>
+  <script src="settings.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
